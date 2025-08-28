@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background-color: transparent; 
+    color: white;
+}
+
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.gif');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.7);
+    z-index: 1; 
+    background-color: #111;
+}
+
+.menu-container {
+    width: 95%;
+    height: 95%;
+    margin: 2.5vh auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.main-title {
+    font-size: 4vw;
+    font-weight: 900;
+    text-align: center;
+    color: #ffd700;
+    text-shadow: 0 0 15px #ffc400;
+    margin: 0 0 2vh 0;
+}
+
+.menu-grid {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5vw;
+}
+
+.menu-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    /* ИЗМЕНЕНО: Увеличиваем вертикальный отступ между карточками */
+    gap: 2.5vh; 
+}
+
+.menu-column h4 {
+    font-size: 1.8vw;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    padding-bottom: 1vh;
+    margin: 0 0 1vh 0;
+    border-bottom: 2px solid #ffd700;
+}
+
+
+/* ======================================= */
+/*        ГЛАВНОЕ ИСПРАВЛЕНИЕ              */
+/* ======================================= */
+.menu-item-card {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px; /* Немного увеличим скругление */
+    
+    /* Убираем внутренние отступы, теперь они не нужны */
+    padding: 0; 
+    
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out forwards;
+    /* Добавляем минимальную высоту для стабильности */
+    min-height: 95px;
+}
+
+.item-photo {
+    /* ИЗМЕНЕНО: Возвращаем фото в поток, убираем position: absolute */
+    width: 6.0vw;
+    height: 6.0vw;
+    min-width: 95px;
+    min-height: 95px;
+    
+    /* ИЗМЕНЕНО: Используем отрицательный отступ для "выхода" за границу */
+    margin-left: -2vw;
+    
+    flex-shrink: 0; /* Запрещаем фото сжиматься */
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #333;
+    border: 3px solid #ffd700;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+    z-index: 5; /* Ставим фото поверх всего */
+}
+
+.item-info {
+    flex-grow: 1;
+    /* ИЗМЕНЕНО: Добавляем отступы здесь, чтобы текст не прилипал к краям */
+    padding: 1vh 1vw 1vh 1.5vw;
+    text-align: left;
+}
+
+.item-info h3 {
+    margin: 0 0 0.5vh 0; /* Добавляем небольшой отступ снизу */
+    /* ИЗМЕНЕНО: Увеличиваем шрифт названий */
+    font-size: 1.4vw; 
+    font-weight: 700;
+}
+
+.item-info .description {
+    margin: 0;
+    /* ИЗМЕНЕНО: Увеличиваем шрифт описания для читаемости */
+    font-size: 1vw;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.price {
+    font-size: 1.5vw;
+    font-weight: 900;
+    color: #ffd700;
+    white-space: nowrap;
+    margin: 0;
+    /* ИЗМЕНЕНО: Добавляем отступ справа от цены */
+    padding: 0 1.5vw 0 1vw;
+}
+
+.menu-item-card:hover .item-photo {
+    transform: scale(1.08);
+}
+
+/* --- КОНЕЦ ГЛАВНОГО ИСПРАВЛЕНИЯ --- */
+
+
+.menu-item-card:nth-child(2) { animation-delay: 0.1s; }
+.menu-item-card:nth-child(3) { animation-delay: 0.2s; }
+.menu-item-card:nth-child(4) { animation-delay: 0.3s; }
+.menu-item-card:nth-child(5) { animation-delay: 0.4s; }
+.menu-item-card:nth-child(6) { animation-delay: 0.5s; }
+.menu-item-card:nth-child(7) { animation-delay: 0.6s; }
+
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1800px) {
+    .main-title { font-size: 72px; }
+    .menu-column h4 { font-size: 34px; }
+    .item-info h3 { font-size: 26px; }
+    .item-info .description { font-size: 18px; }
+    .price { font-size: 28px; }
+}
